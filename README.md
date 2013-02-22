@@ -54,3 +54,8 @@ using routes, you can do pretty much anything you want in a template file.
 
 All third party libraries should go in ```/inc/vendor```, custom libraries 
 should go in ```/inc/```.
+
+## Pagination
+
+PHP Boilerplate includes a pagination class which generates Bootstrap compatible
+html for pagination, basically just an html list of links.
