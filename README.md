@@ -6,7 +6,8 @@ gives you the basics, and let's you develop small apps easy and with very little
 learning curve.
 
 ## Example apps developed with PHP Boilerplate
- * tGallery
+ * [tGallery](tgallery.netai.net): Minimalist high performance PHP Flat Files 
+    image gallery
 
 # Usage
 
