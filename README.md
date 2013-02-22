@@ -40,13 +40,14 @@ As stated before, templates are simple files which wrapper the files you include
 using routes, you can do pretty much anything you want in a template file.
 
 ## Globals
- * __$html__: An instance of a HTML helper, it creates links, lists, gives you
+
+* __$html__: An instance of a HTML helper, it creates links, lists, gives you
     a relative path, and some nice utilities, check it out at 
     ```/inc/html_helper.inc.php```
 
- * __$config__: The configuration array of ```/inc/config.inc.php```
- 
- * **_get**: A function to get a custom route argument, see the documentation
+* __$config__: The configuration array of ```/inc/config.inc.php```
+
+* **_get**: A function to get a custom route argument, see the documentation
     at ```/inc/routes.inc.php``` for more information
 
 ## Vendor
