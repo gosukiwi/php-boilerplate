@@ -48,16 +48,11 @@ class HtmlHelper
             ($this->config['fake_pretty_urls'] ? 'index.php/' : '') . $url);
     }
 
-    function link($name, $url, $options = null, $external = false) {
-        $final_url = $url;
-        if(!$external)
-            $final_url = $this->path_page($url);
+    function link($name, $url, $options = null) {
+        if(strpos($url, 'http') !== 0)
+            $url = $this->path_page($url);
 
-        return '<a href="' . $final_url . '" ' . $this->_parse_options($options) . '>' . $name . '</a>';
-    }
-
-    function external_link($name, $url, $options = null) {
-        return $this->link($name, $url, $options, true);
+        return '<a href="' . $url . '" ' . $this->_parse_options($options) . '>' . $name . '</a>';
     }
 
     function redirect($url) {
@@ -65,7 +60,10 @@ class HtmlHelper
     }
 
     function img($url, $options = null) {
-        return '<img src="' . $this->path_content($url) . '/>';
+        if(strpos($url, 'http') !== 0)
+            $url = $this->path_content($url);
+
+        return '<img src="' . $url . '" ' . $this->_parse_options($options) . '/>';
     }
 
     function js($url, $options = null) {
