@@ -17,3 +17,8 @@ function _truncate($str, $limit) {
     $uid = uniqid();
     return array_shift(explode($uid, wordwrap($str, $limit, $uid)));
 }
+
+// Just a regular expression to check if an email is valid
+function _is_valid_email($email) {
+    return preg_match("/^[_a-z0-9-]+(\.[_a-z0-9+-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i", $email);
+}
