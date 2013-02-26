@@ -48,8 +48,16 @@ class HtmlHelper
             ($this->config['fake_pretty_urls'] ? 'index.php/' : '') . $url);
     }
 
-    function link($name, $url, $options = null) {
-        return '<a href="' . $this->path_page($url) . '" ' . $this->_parse_options($options) . '>' . $name . '</a>';
+    function link($name, $url, $options = null, $external = false) {
+        $final_url = $url;
+        if(!$external)
+            $final_url = $this->path_page($url);
+
+        return '<a href="' . $final_url . '" ' . $this->_parse_options($options) . '>' . $name . '</a>';
+    }
+
+    function external_link($name, $url, $options = null) {
+        return $this->link($name, $url, $options, true);
     }
 
     function redirect($url) {
