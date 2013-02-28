@@ -40,6 +40,63 @@ include 'inc/html_helper.inc.php';
 $html = new HtmlHelper();
 include 'inc/template.inc.php';
 
+// Router functions
+
+$matched_route = NULL;
+// route_exists function, used to match urls
+function route_match() {
+    global $route;
+    global $html;
+    global $config;
+    global $matched_route;
+
+    $url = explode('index.php', $_SERVER['REQUEST_URI']);
+    $url = @str_replace('.', '', substr($url[1], 1));
+    if(strpos($url, '?') !== false) {
+        $url = explode('?', $url);
+        $url = $url[0];
+    }
+
+    if(!$url) {
+        $matched_route = 'ROOT';
+        require_once $route['ROOT'];
+        return true;
+    }
+
+    if(substr($url, -1) == '/') {
+        $url = substr($url, 0, -1);
+    }
+
+    // Check for simple route match
+    if(array_key_exists($url, $route)) {
+        $matched_route = $url;
+        require_once $route[$url];
+        return true;
+    }
+
+    // Check for regex
+    foreach($route as $r => $page) {
+        $matches = array();
+
+        if(preg_match('#' . $r . '$#', $url, $matches)) {
+            array_shift($matches);
+            $_GET['custom_arguments'] = $matches;
+
+            $matched_route = $r;
+            require_once __DIR__ . '/' . $page;
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function route_is_cached() {
+    global $cache_route;
+    global $matched_route;
+    return $matched_route ? @$cache_route[$matched_route] : NULL;
+}
+
 // Include preferred template file
 include 'inc/templates/' . $config['site_template'];
 
