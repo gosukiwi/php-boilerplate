@@ -12,7 +12,7 @@ set_include_path('.');
 define('INCLUDED', true);
 
 // Include configuration file
-include 'app/core/config.inc.php';
+include 'app/config.inc.php';
 
 $cache_file = 'cache/' . sha1($_SERVER['REQUEST_URI']);
 // If we are on release, hide everything and use cache
@@ -34,7 +34,7 @@ if(!$config['debug_mode']) {
 date_default_timezone_set($config['timezone']);
 session_set_cookie_params($config['session_duration']);
 
-include 'app/core/routes.inc.php';
+include 'app/routes.inc.php';
 include 'app/core/underscore.inc.php';
 include 'app/core/html_helper.inc.php';
 $html = new HtmlHelper();
