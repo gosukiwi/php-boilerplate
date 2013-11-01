@@ -12,7 +12,7 @@ set_include_path('.');
 define('INCLUDED', true);
 
 // Include configuration file
-include 'inc/config.inc.php';
+include 'app/core/config.inc.php';
 
 $cache_file = 'cache/' . sha1($_SERVER['REQUEST_URI']);
 // If we are on release, hide everything and use cache
@@ -34,11 +34,11 @@ if(!$config['debug_mode']) {
 date_default_timezone_set($config['timezone']);
 session_set_cookie_params($config['session_duration']);
 
-include 'inc/routes.inc.php';
-include 'inc/underscore.inc.php';
-include 'inc/html_helper.inc.php';
+include 'app/core/routes.inc.php';
+include 'app/core/underscore.inc.php';
+include 'app/core/html_helper.inc.php';
 $html = new HtmlHelper();
-include 'inc/template.inc.php';
+include 'app/core/template.inc.php';
 
 // Router functions
 
@@ -59,7 +59,7 @@ function route_match() {
 
     if(!$url) {
         $matched_route = 'ROOT';
-        require_once $route['ROOT'];
+        require_once __DIR__ . '/app/' . $route['ROOT'];
         return true;
     }
 
@@ -70,7 +70,7 @@ function route_match() {
     // Check for simple route match
     if(array_key_exists($url, $route)) {
         $matched_route = $url;
-        require_once $route[$url];
+        require_once __DIR__ . '/app/' . $route[$url];
         return true;
     }
 
@@ -83,7 +83,7 @@ function route_match() {
             $_GET['custom_arguments'] = $matches;
 
             $matched_route = $r;
-            require_once __DIR__ . '/' . $page;
+            require_once __DIR__ . '/app/' . $page;
             return true;
         }
     }
@@ -98,7 +98,7 @@ function route_is_cached() {
 }
 
 // Include preferred template file
-include 'inc/templates/' . $config['site_template'];
+include 'app/templates/' . $config['site_template'];
 
 // Once the page has finished, check for cache generation
 if($expires = route_is_cached()) {
