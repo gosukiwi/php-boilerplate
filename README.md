@@ -5,10 +5,6 @@ It's __not__ an MVC framework, it's __not__ a full featured set of libraries, it
 gives you the basics, and let's you develop small apps easy and with very little
 learning curve.
 
-## Example apps developed with PHP Boilerplate
- * [tGallery](http://tgallery.netai.net): Minimalist high performance PHP Flat Files 
-    image gallery
-
 # Usage
 
 PHP Boilerplate's core is based on routes, routes read the url and include a
@@ -20,12 +16,12 @@ be included in a template file, and it has access to some global variables.
 The first thing you need to do is add some routes, routes matches the current
 URL with a PHP file, that's all.
 
-Routes live in ```/inc/routes.inc.php```, the file it's documented so you can 
+Routes live in ```/app/routes.inc.php```, the file it's documented so you can 
 easily add new routes and map them to files.
 
 The file the route maps to is included in the content placeholder of the 
 current selected template, the default template lives in 
-```/inc/templates/default.tpl.php```, you can see it's just a simple PHP which
+```/app/templates/default.tpl.php```, you can see it's just a simple PHP which
 uses some global variables to display a bootstrap page.
 
 ### Caching Routes
@@ -52,8 +48,9 @@ using routes, you can do pretty much anything you want in a template file.
 
 ## Vendor
 
-All third party libraries should go in ```/inc/vendor```, custom libraries 
-should go in ```/inc/```.
+All third party libraries should go in ```/app/vendor```, custom libraries 
+should go in ```/app/libs/myLib.php``` or ```/app/libs/mylib/``` if it contains
+several files.
 
 ## Pagination
 
