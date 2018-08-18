@@ -1,5 +1,7 @@
 # PHP Boilerplate
 
+__IMPORTANT NOTICE: This project is deprecated. Use at your own risk.__
+
 PHP Boilerplate is a minimal PHP project to help you get started easy and fast.
 It's __not__ an MVC framework, it's __not__ a full featured set of libraries, it
 gives you the basics, and let's you develop small apps easy and with very little
